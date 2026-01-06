@@ -29,6 +29,19 @@ class MyComponent extends React.Component {
     });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      "componentDidUpdate runing: ",
+      "prevState: ",
+      prevState,
+      "current state: ",
+      this.state
+    );
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount runing");
+  }
   /*
   JSX => return block
   fragment <></>
