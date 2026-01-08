@@ -1,37 +1,49 @@
+import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
-import MyComponent from "./Example/MyComponent";
+
+import Home from "./Example/Home";
 import ListTodo from "./Todos/ListTodo";
+import MyComponent from "./Example/MyComponent";
+import Nav from "./Nav/Nav";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Bounce } from "react-toastify";
-import Nav from "./Nav/Nav";
-import Home from "./Example/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
         <header className="App-header">
           <Nav />
           <img src={logo} className="App-logo" alt="logo" />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/todo" element={<ListTodo />} />
-            <Route path="/about" element={<MyComponent />} />
-          </Routes>
+          <div className="app-content">
+            {" "}
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/todo" component={ListTodo} />
+              <Route path="/about" component={MyComponent} />
+            </Switch>
+          </div>
         </header>
 
         <ToastContainer
           position="top-left"
           autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+          draggable
           theme="light"
           transition={Bounce}
         />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
